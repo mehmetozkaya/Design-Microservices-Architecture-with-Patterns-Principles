@@ -1,33 +1,52 @@
 # Design Microservices Architecture with Patterns & Principles
 
-- Getting started with your first README.md on GitHub
-- Write locally, publish globally
-  - for Mac (todo)
-  - for Windows (todo)
-  - on the command line (todo)
-- Handling images (todo)
-- [Journey Pages](journey)
-- Strategies for collaborative writing (todo)
-- [Useful guides for writing beautiful Markdown](useful-guides-for-writing-beautiful-markdown)
-- [Useful tools for your workflow](useful-tools-for-your-workflow)
-
+We’re going to learn how to **Design Microservices Architecture with using Design Patterns, Principles and the Best Practices.** We will using the right architecture design patterns and techniques.
 
 **UDEMY COURSE WITH DISCOUNTED - Step by Step Design of this Repository -> https://www.udemy.com/course/design-microservices-architecture-with-patterns-principles/?couponCode=DESIGN**
 
+By the end of the course, you will Learn how to **handle millions of request with designing system for high availability, high scalability, low latency, and resilience to network failures** on microservices distributed architectures.
+
+You can find all design drawings on below path;
+
+- [Journey Pages](journey)
+
 See the overall picture of **implementations on microservices architecture** on real-world **e-commerce microservices** project;
 
-![microservices_remastered](https://user-images.githubusercontent.com/1147445/110304529-c5b70180-800c-11eb-832b-a2751b5bda76.png)
+![eventdriven](https://user-images.githubusercontent.com/1147445/130031495-736ec3e0-830e-44b0-887d-caa6cd66a28d.png)
 
-There is a couple of microservices which implemented **e-commerce** modules over **Catalog, Basket, Discount** and **Ordering** microservices with **NoSQL (MongoDB, Redis)** and **Relational databases (PostgreSQL, Sql Server)** with communicating over **RabbitMQ Event Driven Communication** and using **Ocelot API Gateway**.
+This course is will be the journey of software architecture design with **step by step evolving architecture** monolithic to event driven microservices.
 
 ## Whats Including In This Repository
-We have implemented below **features over the run-aspnetcore-microservices repository**.
+We will start the basics of software architecture with designing e-commerce monolithic architecture that handles low amount of requests.
 
-#### Catalog microservice which includes; 
-* ASP.NET Core Web API application 
-* REST API principles, CRUD operations
-* **MongoDB database** connection and containerization
-* Repository Pattern Implementation
-* Swagger Open API implementation	
+After that step by step evolves the architecture with
+* Layered Architecture
+* SOA
+* Microservices
+* and lastly Event Driven Microservices Architectures
+with designing together that handle millions of requests.
 
+We will discuss microservices architectures with all aspects,
+* Microservices Decomposition
+* Microservices Communications (Sync / Async Message-Based Communication, API Gws)
+* Microservices Data Management (Databases / Query / Commands / Distributed Transactions)
+* Microservices Distributed Caching
+* Microservices Deployments with Containers and Orchestrators
+with applying microservices design patterns and practices.
 
+We are going to design with together and step by step with our drawing tool that we will use this designing architectures.
+We will start with designing Monolithic Architecture. And you can see that we have **Functional and Non-functional requirements** that should cover our design and we have patterns and principles toolbox that we will learn and use these principles when evolving architectures.
+You will find that we will add new requirements in order to **handle millions of request and learn new patterns and practices** that will use these principles when evolving architectures.
+* Layered Architecture
+* SOA
+* Microservices Architectures
+* Microservices Architectures API Gws
+* Microservices Architectures API Gws — BFF
+* Microservices Architecture — Service Aggregator / Registry Patterns
+* Microservices Architecture — Message Broker
+* Microservices Architecture — Database Sharding Cassandra
+* Event-Driven Microservices Architecture
+* Microservices Distributed Caching
+* Microservices Containers and Orchestrators
+
+We will see full of **patterns and principle toolbox** is loading with new patterns and apply them into current designs. We will see latest patterns that we use more than **30 patterns and practices** with implementing **High scalability, High availability and handle millions of request requirements**.
