@@ -16,6 +16,9 @@ See the overall picture of **implementations on microservices architecture** on 
 
 This course is will be the journey of software architecture design with **step by step evolving architecture** monolithic to event driven microservices.
 
+### Check Explanation of this Repository on Medium
+* [Monolithic to Microservices Architecture with Patterns & Best Practices](https://medium.com/design-microservices-architecture-with-patterns/monolithic-to-microservices-architecture-with-patterns-best-practices-a768272797b2)
+
 ## Whats Including In This Repository
 We will start the basics of software architecture with designing e-commerce monolithic architecture that handles low amount of requests.
 
