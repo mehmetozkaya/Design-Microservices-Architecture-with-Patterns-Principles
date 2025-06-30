@@ -12,7 +12,7 @@ You can find all design drawings on below path;
 
 See the overall picture of **implementations on microservices architecture** on real-world **e-commerce microservices** project;
 
-![eventdriven](https://user-images.githubusercontent.com/1147445/130031495-736ec3e0-830e-44b0-887d-caa6cd66a28d.png)
+![Image](https://github.com/user-attachments/assets/6bc38c92-0a80-4c43-8a8f-79b519bb2be5)
 
 This course is will be the journey of software architecture design with **step by step evolving architecture** monolithic to event driven microservices.
 
