@@ -1,0 +1,116 @@
+﻿@page "/checkout"
+@inject BasketApiClient BasketApiClient
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<PageTitle>CheckOut</PageTitle>
+
+<h1>CheckOut</h1>
+
+@if (!isCheckoutCompleted)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <EditForm method="post" Model="basketCheckout" OnValidSubmit="PerformCheckout" FormName="create" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary class="text-danger" role="alert" />
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name:</label>
+                    <InputText id="firstName" @bind-Value="basketCheckout.FirstName" class="form-control" />
+                    <ValidationMessage For="() => basketCheckout.FirstName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name:</label>
+                    <InputText id="lastName" @bind-Value="basketCheckout.LastName" class="form-control" />
+                    <ValidationMessage For="() => basketCheckout.LastName" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="emailAddress" class="form-label">EmailAddress:</label>
+                    <InputText id="emailAddress" @bind-Value="basketCheckout.EmailAddress" class="form-control" />
+                    <ValidationMessage For="() => basketCheckout.EmailAddress" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="addressLine" class="form-label">AddressLine:</label>
+                    <InputText id="addressLine" @bind-Value="basketCheckout.AddressLine" class="form-control" />
+                    <ValidationMessage For="() => basketCheckout.AddressLine" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">CheckOut</button>
+            </EditForm>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Shopping Cart</h3>
+            <p><strong>User:</strong> @basket.UserName</p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in basket.Items)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>@item.Price.ToString("C2")</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.Price * item.Quantity)</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Total Price:</strong></td>
+                        <td colspan="2">@basket.TotalPrice.ToString("C2")</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <button class="btn btn-secondary" @onclick="NavigateToCart">Back to Cart</button>
+        </div>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h2>Thank you for your order!</h2>
+        <p>Your checkout operation was successfully completed.</p>
+        <button class="btn btn-primary" @onclick="NavigateToOrders">See Orders</button>
+    </div>
+}
+
+@code {
+    private ShoppingCart basket = new();
+    private BasketCheckout basketCheckout = new();
+    private bool isCheckoutCompleted = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        basket = await BasketApiClient.LoadUserBasket();
+    }
+
+    private async Task PerformCheckout()
+    {
+        basketCheckout.UserName = basket.UserName;
+        basketCheckout.TotalPrice = basket.TotalPrice;
+
+        await BasketApiClient.CheckoutBasket(basketCheckout);
+
+        // Mark checkout as completed
+        isCheckoutCompleted = true;
+    }
+
+    private void NavigateToCart()
+    {
+        NavigationManager.NavigateTo("/cart");
+    }
+
+    private void NavigateToOrders()
+    {
+        NavigationManager.NavigateTo("/orders");
+    }
+}

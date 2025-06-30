@@ -1,0 +1,151 @@
+@YarpApiGateway_HostAddress = https://localhost:7095
+
+###### Catalog Endpoints 
+### GetAllProducts
+GET {{YarpApiGateway_HostAddress}}/catalog-service/products
+Accept: application/json
+
+### GetProductById
+GET {{YarpApiGateway_HostAddress}}/catalog-service/products/1
+Accept: application/json
+
+### CreateProduct
+POST {{YarpApiGateway_HostAddress}}/catalog-service/products
+Content-Type: application/json
+{
+    "id": 10,
+    "name": "NEW Swn Flashlight",
+    "description": "A NEW swn product for outdoor enthusiasts",
+    "price": 59.99,
+    "imageUrl": "product10.png"
+}
+
+### UpdateProduct
+PUT {{YarpApiGateway_HostAddress}}/catalog-service/products/10
+Content-Type: application/json
+{    
+    "name": "UPDATED Swn Flashlight",
+    "description": "An UPDATED swn product for outdoor enthusiasts",
+    "price": 19.99,
+    "imageUrl": "product10.png"
+}
+
+### Delete Product By Id
+DELETE {{YarpApiGateway_HostAddress}}/catalog-service/products/10
+Content-Type: application/json
+
+### Update Product Price
+PUT {{YarpApiGateway_HostAddress}}/catalog-service/products/1
+Content-Type: application/json
+{    
+    "name": "Solar Powered Flashlight",
+    "description": "A fantastic product for outdoor enthusiasts",
+    "price": 5.99,
+    "imageUrl": "product1.png"
+}
+
+### Traditional Search
+GET {{YarpApiGateway_HostAddress}}/catalog-service/products/search/Hiking
+Accept: application/json
+
+
+
+###### Basket Endpoints 
+### GetBasketByUserName
+GET {{YarpApiGateway_HostAddress}}/basket-service/basket/swn
+Accept: application/json
+
+### CreateorUpdateBasket
+POST {{YarpApiGateway_HostAddress}}/basket-service/basket
+Content-Type: application/json
+
+{    
+    "UserName": "swn",
+    "Items": [
+        {            
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 10,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {            
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 20,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        }
+    ]
+}
+
+### CreateorUpdateBasket - Add New Item --note: new added item id should be 0
+POST {{YarpApiGateway_HostAddress}}/basket-service/basket
+Content-Type: application/json
+
+{    
+    "UserName": "swn",
+    "Items": [
+        {            
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 10,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {            
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 20,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        },        
+        {            
+            "Quantity": 4,
+            "Color": "Yellow",
+            "Price": 30,
+            "ProductId": 3,
+            "ProductName": "Outdoor Rain Jacket"
+        }
+    ]
+}
+
+### CheckoutBasket
+POST {{YarpApiGateway_HostAddress}}/basket-service/basket/checkout
+Content-Type: application/json
+
+{    
+    "UserName": "swn",
+    "TotalPrice": 0,
+    "FirstName": "Mehmet",
+    "LastName": "Ozkaya",
+    "EmailAddress": "abc@abc.com",
+    "AddressLine": "Random Address Information"
+}
+
+### DeleteBasket
+DELETE {{YarpApiGateway_HostAddress}}/basket-service/basket/swn
+Accept: application/json
+
+
+
+###### Order Endpoints 
+### GetAllOrders
+GET {{YarpApiGateway_HostAddress}}/ordering-service/orders
+Accept: application/json
+
+### GetOrderByUserName
+GET {{YarpApiGateway_HostAddress}}/ordering-service/orders/swn
+Accept: application/json
+
+### CreateOrder
+POST {{YarpApiGateway_HostAddress}}/ordering-service/orders
+Content-Type: application/json
+{
+    "UserName": "swn",
+    "TotalPrice": 259.99,
+    "FirstName": "Mehmet",
+    "LastName": "Ozkaya",
+    "EmailAddress": "asd@asd.com",
+    "AddressLine": "Istanbul"    
+}

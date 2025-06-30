@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.1" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>    
+    <UserSecretsId>9f51c609-0365-40b5-8354-2c29415f2490</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
+	<PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.3.1" />
+	<PackageReference Include="Aspire.Hosting.Redis" Version="9.3.1" />
+	<PackageReference Include="Aspire.Hosting.SqlServer" Version="9.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Basket\Basket.csproj" />
+    <ProjectReference Include="..\Catalog\Catalog.csproj" />
+    <ProjectReference Include="..\Ordering\Ordering.csproj" />
+    <ProjectReference Include="..\WebApp\WebApp.csproj" />
+  </ItemGroup>
+
+</Project>

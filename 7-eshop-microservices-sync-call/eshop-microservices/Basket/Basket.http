@@ -1,0 +1,77 @@
+@Basket_HostAddress = https://localhost:7180
+
+### GetBasketByUserName
+GET {{Basket_HostAddress}}/basket/swn
+Accept: application/json
+
+### CreateorUpdateBasket
+POST {{Basket_HostAddress}}/basket
+Content-Type: application/json
+
+{    
+    "UserName": "swn",
+    "Items": [
+        {            
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 10,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {            
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 20,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        }
+    ]
+}
+
+### CreateorUpdateBasket - Add New Item --note: new added item id should be 0
+POST {{Basket_HostAddress}}/basket
+Content-Type: application/json
+
+{    
+    "UserName": "swn",
+    "Items": [
+        {            
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 10,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {            
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 20,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        },        
+        {            
+            "Quantity": 4,
+            "Color": "Yellow",
+            "Price": 30,
+            "ProductId": 3,
+            "ProductName": "Outdoor Rain Jacket"
+        }
+    ]
+}
+
+### CheckoutBasket
+POST {{Basket_HostAddress}}/basket/checkout
+Content-Type: application/json
+
+{    
+    "UserName": "swn",
+    "TotalPrice": 0,
+    "FirstName": "Mehmet",
+    "LastName": "Ozkaya",
+    "EmailAddress": "abc@abc.com",
+    "AddressLine": "Random Address Information"
+}
+
+### DeleteBasket
+DELETE {{Basket_HostAddress}}/basket/swn
+Accept: application/json

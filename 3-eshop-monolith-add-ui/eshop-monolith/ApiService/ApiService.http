@@ -1,0 +1,72 @@
+@ApiService_HostAddress = https://localhost:7022/apiservice
+
+###### Product Endpoints 
+### GetAllProducts
+GET {{ApiService_HostAddress}}/products
+Accept: application/json
+
+### GetProductById
+GET {{ApiService_HostAddress}}/products/1
+Accept: application/json
+
+###### Basket Endpoints 
+### GetBasketByUserName
+GET {{ApiService_HostAddress}}/basket/swn
+Accept: application/json
+
+### CreateorUpdateBasket
+POST {{ApiService_HostAddress}}/basket
+Content-Type: application/json
+
+{
+    "Id": 101,
+    "UserName": "swn",
+    "Items": [
+        {
+            "Id": 51,
+            "ShoppingCartId": 101,
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 0,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {
+            "Id": 52,
+            "ShoppingCartId": 101,
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 0,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        }
+    ]
+}
+
+### CheckoutBasket
+POST {{ApiService_HostAddress}}/basket/checkout
+Content-Type: application/json
+
+{    
+    "UserName": "swn",    
+    "TotalPrice": 550,    
+    "FirstName": "Mehmet",    
+    "LastName": "Ozkaya",    
+    "EmailAddress": "asd@asd.com",    
+    "AddressLine": "Random Address Information"
+}
+
+### DeleteBasket
+DELETE {{ApiService_HostAddress}}/basket/swn
+Accept: application/json
+
+###### Order Endpoints 
+### GetAllOrders
+GET {{ApiService_HostAddress}}/orders
+Accept: application/json
+
+### GetOrdersByUserName
+GET {{ApiService_HostAddress}}/orders/swn
+Accept: application/json
+
+###

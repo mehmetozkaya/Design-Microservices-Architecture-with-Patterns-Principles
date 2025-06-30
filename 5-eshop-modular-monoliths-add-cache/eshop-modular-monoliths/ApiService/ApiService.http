@@ -1,0 +1,154 @@
+@ApiService_HostAddress = https://localhost:7029
+
+###### Product Endpoints 
+### GetAllProducts
+GET {{ApiService_HostAddress}}/products
+Accept: application/json
+
+### GetProductById
+GET {{ApiService_HostAddress}}/products/1
+Accept: application/json
+
+
+### CreateProduct
+POST {{ApiService_HostAddress}}/products
+Content-Type: application/json
+{
+    "id": 10,
+    "name": "NEW Swn Flashlight",
+    "description": "A NEW swn product for outdoor enthusiasts",
+    "price": 59.99,
+    "imageUrl": "product10.png"
+}
+
+### UpdateProduct
+PUT {{ApiService_HostAddress}}/products/10
+Content-Type: application/json
+{    
+    "name": "UPDATED Swn Flashlight",
+    "description": "An UPDATED swn product for outdoor enthusiasts",
+    "price": 19.99,
+    "imageUrl": "product10.png"
+}
+
+### Delete Product By Id
+DELETE {{ApiService_HostAddress}}/products/10
+Content-Type: application/json
+
+### Update Product Price
+PUT {{ApiService_HostAddress}}/products/1
+Content-Type: application/json
+{    
+    "name": "Solar Powered Flashlight",
+    "description": "A fantastic product for outdoor enthusiasts",
+    "price": 5.99,
+    "imageUrl": "product1.png"
+}
+
+### Traditional Search
+GET {{ApiService_HostAddress}}/products/search/Hiking
+Accept: application/json
+
+
+
+###### Basket Endpoints 
+### GetBasketByUserName
+GET {{ApiService_HostAddress}}/basket/swn
+Accept: application/json
+
+### CreateorUpdateBasket
+POST {{ApiService_HostAddress}}/basket
+Content-Type: application/json
+
+{
+    "Id": 101,
+    "UserName": "swn",
+    "Items": [
+        {
+            "Id": 51,
+            "ShoppingCartId": 101,
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 10,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {
+            "Id": 52,
+            "ShoppingCartId": 101,
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 20,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        }
+    ]
+}
+
+### CreateorUpdateBasket - Add New Item --note: new added item id should be 0
+POST {{ApiService_HostAddress}}/basket
+Content-Type: application/json
+
+{
+    "Id": 101,
+    "UserName": "swn",
+    "Items": [
+        {
+            "Id": 51,
+            "ShoppingCartId": 101,
+            "Quantity": 2,
+            "Color": "Red",
+            "Price": 10,
+            "ProductId": 1,
+            "ProductName": "Solar Powered Flashlight"
+        },
+        {
+            "Id": 52,
+            "ShoppingCartId": 101,
+            "Quantity": 1,
+            "Color": "Blue",
+            "Price": 20,
+            "ProductId": 2,
+            "ProductName": "Hiking Poles"
+        },        
+        {
+            "Id": 0,
+            "ShoppingCartId": 101,
+            "Quantity": 4,
+            "Color": "Yellow",
+            "Price": 30,
+            "ProductId": 3,
+            "ProductName": "Outdoor Rain Jacket"
+        }
+    ]
+}
+
+### CheckoutBasket
+POST {{ApiService_HostAddress}}/basket/checkout
+Content-Type: application/json
+
+{    
+    "UserName": "swn",    
+    "TotalPrice": 0,    
+    "FirstName": "Mehmet",    
+    "LastName": "Ozkaya",    
+    "EmailAddress": "asd@asd.com",    
+    "AddressLine": "Random Address Information"
+}
+
+### DeleteBasket
+DELETE {{ApiService_HostAddress}}/basket/swn
+Accept: application/json
+
+
+
+###### Order Endpoints 
+### GetAllOrders
+GET {{ApiService_HostAddress}}/orders
+Accept: application/json
+
+### GetOrdersByUserName
+GET {{ApiService_HostAddress}}/orders/swn
+Accept: application/json
+
+###

@@ -1,0 +1,52 @@
+﻿@page "/orders"
+@inject YarpApiClient YarpApiClient
+@attribute [StreamRendering(true)]
+@rendermode InteractiveServer
+
+<PageTitle>Orders</PageTitle>
+
+<h1>Orders</h1>
+
+@if (orders == null || orders.Count == 0)
+{
+    <p><em>You've no orders yet. Start shopping to create orders !</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>TotalPrice</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>EmailAddress</th>
+                <th>AddressLine</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <!-- Simulating images being hosted on a CDN -->
+                    <td>@order.UserName</td>
+                    <td>@order.TotalPrice.ToString("C2")</td>
+                    <td>@order.FirstName</td>
+                    <td>@order.LastName</td>
+                    <td>@order.EmailAddress</td>
+                    <td>@order.AddressLine</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private List<Order>? orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await YarpApiClient.GetAllOrders();
+    }
+}

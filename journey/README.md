@@ -1,3 +1,0 @@
-# ResponseReason - Journey
-
-asdasd

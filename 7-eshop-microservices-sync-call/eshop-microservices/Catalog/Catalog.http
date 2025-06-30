@@ -1,0 +1,48 @@
+@Catalog_HostAddress = https://localhost:7096
+
+### GetAllProducts
+GET {{Catalog_HostAddress}}/products
+Accept: application/json
+
+### GetProductById
+GET {{Catalog_HostAddress}}/products/1
+Accept: application/json
+
+### CreateProduct
+POST {{Catalog_HostAddress}}/products
+Content-Type: application/json
+{
+    "id": 10,
+    "name": "NEW Swn Flashlight",
+    "description": "A NEW swn product for outdoor enthusiasts",
+    "price": 59.99,
+    "imageUrl": "product10.png"
+}
+
+### UpdateProduct
+PUT {{Catalog_HostAddress}}/products/10
+Content-Type: application/json
+{    
+    "name": "UPDATED Swn Flashlight",
+    "description": "An UPDATED swn product for outdoor enthusiasts",
+    "price": 19.99,
+    "imageUrl": "product10.png"
+}
+
+### Delete Product By Id
+DELETE {{Catalog_HostAddress}}/products/10
+Content-Type: application/json
+
+### Update Product Price
+PUT {{Catalog_HostAddress}}/products/1
+Content-Type: application/json
+{    
+    "name": "Solar Powered Flashlight",
+    "description": "A fantastic product for outdoor enthusiasts",
+    "price": 5.99,
+    "imageUrl": "product1.png"
+}
+
+### Traditional Search
+GET {{Catalog_HostAddress}}/products/search/Hiking
+Accept: application/json

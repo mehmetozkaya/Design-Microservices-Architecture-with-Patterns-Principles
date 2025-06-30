@@ -1,0 +1,22 @@
+@Ordering_HostAddress = https://localhost:7029
+
+### GetAllOrders
+GET {{Ordering_HostAddress}}/orders
+Accept: application/json
+
+### GetOrderByUserName
+GET {{Ordering_HostAddress}}/orders/swn
+Accept: application/json
+
+### CreateOrder
+POST {{Ordering_HostAddress}}/orders
+Content-Type: application/json
+{    
+    "UserName": "swn",
+    "TotalPrice": 259.99,
+    "FirstName": "Mehmet",
+    "LastName": "Ozkaya",
+    "EmailAddress": "asd@asd.com",
+    "AddressLine": "Istanbul"    
+}
+

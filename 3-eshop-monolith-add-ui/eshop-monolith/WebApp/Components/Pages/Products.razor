@@ -1,0 +1,99 @@
+﻿@page "/products"
+@inject ApiServiceClient ApiServiceClient
+@attribute [StreamRendering(true)]
+@rendermode InteractiveServer
+
+<PageTitle>Products</PageTitle>
+
+<h1>Products</h1>
+
+<p>Here are some of our amazing outdoor products that you can purchase.</p>
+
+@if (showNotification)
+{
+    <div class="alert alert-success" role="alert">
+        Item added to cart successfully!
+    </div>
+}
+
+@if (products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (products.Count == 0)
+{
+    <p><em>There is a problem loading our products. Please try again later.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <!-- Simulating images being hosted on a CDN -->
+                    <td><img height="80" width="80" src="https://raw.githubusercontent.com/MicrosoftDocs/mslearn-dotnet-cloudnative/main/dotnet-docker/Products/wwwroot/images/@product.ImageUrl" /></td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price.ToString("C2")</td>
+                    <td><button class="btn btn-primary" @onclick="() => AddToCart(product)">Add to Cart</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Product>? products;
+    private bool showNotification;
+
+    protected override async Task OnInitializedAsync()
+    {        
+        products = await ApiServiceClient.GetProducts();
+    }
+
+    private async Task AddToCart(Product product)
+    {
+        var basket = await ApiServiceClient.LoadUserBasket();
+
+        // Check if the item already exists in the basket
+        var existingItem = basket.Items.FirstOrDefault(item => item.ProductId == product.Id);  
+        if (existingItem != null)  
+        {  
+            // If the item exists, increase the quantity
+            existingItem.Quantity++;  
+        }
+        else  
+        {  
+            // If the item does not exist, add it to the basket
+            basket.Items.Add(new ShoppingCartItem
+                {  
+                    ProductId = product.Id,
+                    ProductName = product.Name,
+                    Price = product.Price,
+                    Color = "Blue",
+                    Quantity = 1
+                });
+        }
+
+        await ApiServiceClient.UpdateBasket(basket);
+
+        // Show notification
+        showNotification = true;
+        StateHasChanged();
+
+        // Hide notification after 1 seconds
+        await Task.Delay(1000);
+        showNotification = false;
+        StateHasChanged();
+    }    
+}

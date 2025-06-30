@@ -1,0 +1,82 @@
+﻿@page "/cart"
+@inject BasketApiClient BasketApiClient
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Shopping Cart</PageTitle>
+
+<h1>Shopping Cart</h1>
+
+@if (basket == null || basket.Items.Count == 0)
+{
+    <p><em>Your cart is empty. Start shopping to add items!</em></p>
+}
+else
+{
+    <p><strong>User:</strong> @basket.UserName</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in basket.Items)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price.ToString("C2")</td>
+                    <td>
+                        <input type="number" min="1" class="form-control" @bind="item.Quantity" />
+                    </td>
+                    <td>@(item.Price * item.Quantity)</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => RemoveItem(item)">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end"><strong>Total Price:</strong></td>
+                <td colspan="2">@basket.TotalPrice.ToString("C2")</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-secondary" @onclick="ContinueShopping">Continue Shopping</button>
+        <button class="btn btn-success" @onclick="Checkout">Checkout</button>
+    </div>
+}
+
+@code {
+    private ShoppingCart basket = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        basket = await BasketApiClient.LoadUserBasket();
+    }
+
+    private async Task RemoveItem(ShoppingCartItem item)
+    {
+        basket.Items.Remove(item);
+
+        await BasketApiClient.UpdateBasket(basket);
+    }
+
+    private void ContinueShopping()
+    {
+        NavigationManager.NavigateTo("/products");
+    }
+
+    private void Checkout()
+    {
+        NavigationManager.NavigateTo("/checkout");
+    }
+}
