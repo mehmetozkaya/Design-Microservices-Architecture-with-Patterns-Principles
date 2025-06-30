@@ -6,15 +6,13 @@ We’re going to learn how to **Design Microservices Architecture with using Des
 
 By the end of the course, you will Learn how to **handle millions of request with designing system for high availability, high scalability, low latency, and resilience to network failures** on microservices distributed architectures.
 
-This course is will be the journey of software architecture design with step by step evolving architecture monolithic to event driven microservices
-- Iterate Design Architecture from Monolithic to Microservices Architecture with Patterns & Best Practices
-- A step-by-step process for software system design and evolve from monolithic to microservices following the patterns & principles
-
 See the overall picture of **implementations on microservices architecture** on real-world **e-commerce microservices** project;
 
 ![Image](https://github.com/user-attachments/assets/6bc38c92-0a80-4c43-8a8f-79b519bb2be5)
 
 This course is will be the journey of software architecture design with **step by step evolving architecture** monolithic to event driven microservices.
+- Iterate Design Architecture from Monolithic to Microservices Architecture with Patterns & Best Practices
+- A step-by-step process for software system design and evolve from monolithic to microservices following the patterns & principles
 
 ### Check Explanation of this Repository on Medium
 * [Monolithic to Microservices Architecture with Patterns & Best Practices](https://medium.com/design-microservices-architecture-with-patterns/monolithic-to-microservices-architecture-with-patterns-best-practices-a768272797b2)
